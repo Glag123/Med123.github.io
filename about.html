@@ -6,10 +6,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Проект.МЕД.1 - О нас</title>
     <style>
-        /* Ваши стили здесь, если есть */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #002349;
+            color: #e1b382; /* Основной цвет текста */
+            overflow-x: hidden;
+        }
+        header, nav, section, footer {
+            background-color: #002349;
+            padding: 1em;
+            text-align: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 1em;
+        }
+        nav a {
+            color: #e1b382; /* Цвет ссылок */
+            text-decoration: none;
+        }
+        section {
+            margin: 2em;
+            padding: 1em;
+            background-color: #dcdcdc; /* Серый фон */
+            border-radius: 8px;
+        }
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #dcdcdc; /* Серый цвет для панели */
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+        .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #002349; /* Цвет текста ссылок */
+            display: block;
+            transition: 0.3s;
+        }
+        .sidenav a:hover {
+            color: #e1b382; /* Изменение цвета текста при наведении */
+        }
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+        @media screen and (max-height: 450px) {
+            .sidenav {padding-top: 15px;}
+            .sidenav a {font-size: 18px;}
+        }
+        #openNav {
+            font-size: 30px;
+            cursor: pointer;
+            position: fixed;
+            top: 15px;
+            right: 15px; /* Изменено на right */
+            color: #e1b382;
+        }
     </style>
 </head>
 <body>
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" id="closeNav">&times;</a>
+        <a href="index.html">Главная</a>
+        <a href="about.html">О Нас</a>
+        <a href="projects.html">Наши проекты</a>
+        <a href="contact.html">Контакты</a>
+        <a href="page1.html">Страница 1</a>
+        <a href="page2.html">Страница 2</a>
+        <a href="page3.html">Страница 3</a>
+    </div>
+
+    <span id="openNav">&#9776; Меню</span>
 
     <header>
         <h1>Добро пожаловать!</h1>
@@ -33,6 +119,29 @@
     <footer>
         <p>&copy; 06.12.2023 - дата создания</p>
     </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Плавный скроллинг при клике на ссылки
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Открытие/закрытие выдвижной панели
+            document.getElementById('openNav').addEventListener('click', function () {
+                if (document.getElementById('mySidenav').style.width === '0px' || !document.getElementById('mySidenav').style.width) {
+                    document.getElementById('mySidenav').style.width = '250px';
+                } else {
+                    document.getElementById('mySidenav').style.width = '0';
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
