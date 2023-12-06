@@ -71,6 +71,14 @@
             .sidenav {padding-top: 15px;}
             .sidenav a {font-size: 18px;}
         }
+        #openNav {
+            font-size: 30px;
+            cursor: pointer;
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            color: #e1b382;
+        }
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -87,11 +95,11 @@
 
             // Открытие/закрытие выдвижной панели
             document.getElementById('openNav').addEventListener('click', function () {
-                document.getElementById('mySidenav').style.width = '250px';
-            });
-
-            document.getElementById('closeNav').addEventListener('click', function () {
-                document.getElementById('mySidenav').style.width = '0';
+                if (document.getElementById('mySidenav').style.width === '0px' || !document.getElementById('mySidenav').style.width) {
+                    document.getElementById('mySidenav').style.width = '250px';
+                } else {
+                    document.getElementById('mySidenav').style.width = '0';
+                }
             });
         });
     </script>
@@ -99,14 +107,15 @@
 <body>
 
     <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" id="closeNav">&times;</a>
-        <a href="#about">О нас</a>
-        <a href="#projects">Наши проекты</a>
-        <a href="#contact">Контакты</a>
+        <a href="javascript:void(0)" class="closebtn" id="closeNav">&times;</a>
+        <a href="#about" target="_blank">О нас</a>
+        <a href="#projects" target="_blank">Наши проекты</a>
+        <a href="#contact" target="_blank">Контакты</a>
     </div>
 
+    <span id="openNav">&#9776; Меню</span>
+
     <header>
-        <span style="font-size:30px;cursor:pointer" id="openNav">&#9776; Меню</span>
         <h1>Добро пожаловать!</h1>
     </header>
 
