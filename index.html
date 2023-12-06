@@ -11,6 +11,7 @@
             padding: 0;
             background-color: #002349;
             color: #e1b382; /* Основной цвет текста */
+            overflow-x: hidden;
         }
         header, nav, section, footer {
             background-color: #002349;
@@ -36,6 +37,40 @@
             background-color: #dcdcdc; /* Серый фон */
             border-radius: 8px;
         }
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #dcdcdc; /* Серый цвет для панели */
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+        .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 20px;
+            color: #002349; /* Цвет текста ссылок */
+            display: block;
+            transition: 0.3s;
+        }
+        .sidenav a:hover {
+            color: #e1b382; /* Изменение цвета текста при наведении */
+        }
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+        @media screen and (max-height: 450px) {
+            .sidenav {padding-top: 15px;}
+            .sidenav a {font-size: 18px;}
+        }
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
@@ -49,12 +84,29 @@
                     });
                 });
             });
+
+            // Открытие/закрытие выдвижной панели
+            document.getElementById('openNav').addEventListener('click', function () {
+                document.getElementById('mySidenav').style.width = '250px';
+            });
+
+            document.getElementById('closeNav').addEventListener('click', function () {
+                document.getElementById('mySidenav').style.width = '0';
+            });
         });
     </script>
 </head>
 <body>
 
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" id="closeNav">&times;</a>
+        <a href="#about">О нас</a>
+        <a href="#projects">Наши проекты</a>
+        <a href="#contact">Контакты</a>
+    </div>
+
     <header>
+        <span style="font-size:30px;cursor:pointer" id="openNav">&#9776; Меню</span>
         <h1>Добро пожаловать!</h1>
     </header>
 
